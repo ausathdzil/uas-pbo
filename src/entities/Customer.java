@@ -1,10 +1,10 @@
 package entities;
 
 public class Customer {
-    int customerId;
-    String name;
-    String email;
-    String phoneNumber;
+    private int customerId;
+    private String name;
+    private String email;
+    private String phoneNumber;
 
     public Customer(String name, String email, String phoneNumber) {
         this.name = name;
@@ -44,5 +44,5 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     };
 
-    void displayDetails() {}
+    public void displayDetails() {}
 }

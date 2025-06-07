@@ -56,5 +56,5 @@ public class Reservation {
 
     public void getTotalPrice() {}
 
-    void displayDetails() {}
+    public void displayDetails() {}
 }
