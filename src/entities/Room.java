@@ -6,11 +6,11 @@ public abstract class Room {
     private int capacity;
     private boolean isAvailable;
 
-    public Room(int roomNumber, int price, int capacity, boolean isAvailable) {
+    public Room(int roomNumber, int price, int capacity) {
         this.roomNumber = roomNumber;
         this.price = price;
         this.capacity = capacity;
-        this.isAvailable = isAvailable;
+        this.isAvailable = false;
     }
 
     public int getRoomNumber() {
