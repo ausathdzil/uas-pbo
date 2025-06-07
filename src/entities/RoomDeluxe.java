@@ -1,7 +1,7 @@
 package entities;
 
 public class RoomDeluxe extends Room {
-    public RoomDeluxe(int roomNumber, int price, int capacity, boolean isAvailable) {
+    public RoomDeluxe(int roomNumber, int price, int capacity) {
         super(roomNumber, price, capacity);
     }
 
