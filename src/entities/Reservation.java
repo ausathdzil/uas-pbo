@@ -1,69 +1,60 @@
 package entities;
 
 public class Reservation {
-    int roomNumber;
-    int customerId;
-    String checkInDate;
-    String checkOutDate;
-    int totalPrice;
-    boolean isPaid;
+    private int reservationNumber;
+    private Customer customer;
+    private Room room;
+    private int checkInDate;
+    private int checkOutDate;
 
-    public Reservation(int roomNumber, int customerId, String checkInDate, String checkOutDate, int totalPrice, boolean isPaid) {
-        this.roomNumber = roomNumber;
-        this.customerId = customerId;
+    public Reservation(Customer customer, Room room, int checkInDate, int checkOutDate) {
+        this.customer = customer;
+        this.room = room;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
-        this.totalPrice = totalPrice;
-        this.isPaid = isPaid;
     }
 
-    public int getRoomNumber() {
-        return roomNumber;
+    public int getReservationNumber() {
+        return reservationNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public void setReservationNumber(int reservationNumber) {
+        this.reservationNumber = reservationNumber;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public String getCheckInDate() {
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public int getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
+    public void setCheckInDate(int checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public String getCheckOutDate() {
+    public int getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
+    public void setCheckOutDate(int checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public boolean isPaid() {
-        return isPaid;
-    }
-
-    public void setPaid(boolean paid) {
-        isPaid = paid;
-    }
+    public void getTotalPrice() {}
 
     void displayDetails() {}
 }
