@@ -45,5 +45,5 @@ public abstract class Room {
         isAvailable = available;
     }
 
-    abstract void displayDetails();
+    public abstract void displayDetails();
 }

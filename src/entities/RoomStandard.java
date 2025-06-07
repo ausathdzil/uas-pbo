@@ -5,5 +5,13 @@ public class RoomStandard extends Room {
         super(roomNumber, price, capacity);
     }
 
-    void displayDetails() {}
+    @Override
+    public void displayDetails() {
+        System.out.println("Room Standard");
+        System.out.println("Room Number: " + getRoomNumber());
+        System.out.println("Price: " + getPrice());
+        System.out.println("Capacity: " + getCapacity());
+        System.out.println("Is Available: " + isAvailable());
+        System.out.println("Extra Fasilities: None");
+    }
 }
