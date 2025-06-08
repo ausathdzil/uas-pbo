@@ -33,7 +33,11 @@ public class Customer {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (email.contains("@")) {
+            this.email = email;
+        } else {
+            System.out.println("Invalid email. Please enter a valid email address.");
+        }
     }
 
     public String getPhoneNumber() {
@@ -44,5 +48,10 @@ public class Customer {
         this.phoneNumber = phoneNumber;
     };
 
-    public void displayDetails() {}
+    public void displayDetails() {
+        System.out.println("Customer ID: " + customerId);
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email);
+        System.out.println("Phone Number: " + phoneNumber);
+    }
 }
