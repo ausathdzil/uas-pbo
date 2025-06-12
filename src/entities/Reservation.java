@@ -60,9 +60,9 @@ public class Reservation {
         System.out.println("Reservation Number: " + reservationNumber);
         System.out.println("Customer: " + customer.getName());
         System.out.println("Room Type: " + room.getRoomNumber());
-        System.out.println("Check-In Date: " + checkInDate);
-        System.out.println("Check-Out Date: " + checkOutDate);
-        System.out.println("Total Price: $" + totalPrice);
+        System.out.println("CheckIn Date: " + checkInDate);
+        System.out.println("CheckOut Date: " + checkOutDate);
+        System.out.println("Total Price: Rp." + totalPrice);
     }
 
     public int calculateTotalPrice() {
