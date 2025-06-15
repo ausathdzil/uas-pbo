@@ -12,6 +12,11 @@ public class CustomerManagement {
         System.out.println("Customer added successfully.");
     }
 
+    public ArrayList<Customer> getCustomerList() {
+    return customerList;
+}
+
+
     public boolean updateCustomer(int customerId, String name, String email, String phoneNumber) {
         Customer customer = findCustomerById(customerId);
         if (customer != null) {

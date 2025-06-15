@@ -3,19 +3,21 @@ package managers;
 import entities.Reservation;
 import entities.Customer;
 import entities.Room;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ReservationManagement {
     private ArrayList<Reservation> reservationList = new ArrayList<>();
 
-    public boolean makeReservation(Customer customer, Room room, int checkInDate, int checkOutDate) {
+    public boolean makeReservation(Customer customer, Room room, LocalDate checkInDate, LocalDate checkOutDate) {
         if (!room.isAvailable()) {
-            System.out.println("Room is not available");
+            System.out.println("Room is not available.");
             return false;
         }
 
         Reservation reservation = new Reservation(customer, room, checkInDate, checkOutDate);
-        reservation.setReservationNumber(reservationList.size() + 1);
         reservationList.add(reservation);
         room.setAvailable(false);
         System.out.println("Reservation made successfully.");
@@ -28,7 +30,6 @@ public class ReservationManagement {
         } else {
             for (Reservation reservation : reservationList) {
                 reservation.displayDetails();
-                System.out.println("Total Price: " + reservation.calculateTotalPrice());
                 System.out.println("-----------------------------");
             }
         }
@@ -43,21 +44,23 @@ public class ReservationManagement {
         return null;
     }
 
-    public boolean updateReservation(int reservationNumber, Room newRoom, int newCheckInDate, int newCheckOutDate) {
+    public boolean updateReservation(int reservationNumber, Room newRoom, LocalDate newCheckInDate, LocalDate newCheckOutDate) {
         Reservation reservation = findReservationByNumber(reservationNumber);
         if (reservation == null) {
-            System.out.println("Reservation is not found.");
+            System.out.println("Reservation not found.");
             return false;
         }
 
-        reservation.getRoom().setAvailable(true); 
+        // Bebaskan kamar lama
+        reservation.getRoom().setAvailable(true);
 
         if (!newRoom.isAvailable()) {
-            System.out.println("New room is not available");
-            reservation.getRoom().setAvailable(false); 
+            System.out.println("New room is not available.");
+            reservation.getRoom().setAvailable(false); // revert
             return false;
         }
 
+        // Set kamar baru & tanggal baru
         reservation.setRoom(newRoom);
         reservation.setCheckInDate(newCheckInDate);
         reservation.setCheckOutDate(newCheckOutDate);
@@ -68,12 +71,15 @@ public class ReservationManagement {
     }
 
     public boolean cancelReservation(int reservationNumber) {
-        Reservation reservation = findReservationByNumber(reservationNumber);
-        if (reservation != null) {
-            reservation.getRoom().setAvailable(true);
-            reservationList.remove(reservation);
-            System.out.println("Reservation cancelled successfully.");
-            return true;
+        Iterator<Reservation> iterator = reservationList.iterator();
+        while (iterator.hasNext()) {
+            Reservation reservation = iterator.next();
+            if (reservation.getReservationNumber() == reservationNumber) {
+                reservation.getRoom().setAvailable(true);
+                iterator.remove();
+                System.out.println("Reservation cancelled successfully.");
+                return true;
+            }
         }
         System.out.println("Reservation not found.");
         return false;

@@ -2,15 +2,15 @@ package entities;
 
 public abstract class Room {
     private int roomNumber;
-    private int price;
     private int capacity;
     private boolean isAvailable;
+    protected int pricePerNight;
 
-    public Room(int roomNumber, int price, int capacity) {
+    public Room(int roomNumber, int pricePerNight, int capacity) {
         this.roomNumber = roomNumber;
-        this.price = price;
+        this.pricePerNight = pricePerNight;
         this.capacity = capacity;
-        this.isAvailable = false;
+        this.isAvailable = true; // default tersedia saat dibuat
     }
 
     public int getRoomNumber() {
@@ -21,20 +21,20 @@ public abstract class Room {
         this.roomNumber = roomNumber;
     }
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getCapacity() {
         return capacity;
     }
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public int getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void setPricePerNight(int pricePerNight) {
+        this.pricePerNight = pricePerNight;
     }
 
     public boolean isAvailable() {
@@ -44,6 +44,8 @@ public abstract class Room {
     public void setAvailable(boolean available) {
         isAvailable = available;
     }
+
+    public abstract String getType();
 
     public abstract void displayDetails();
 }
