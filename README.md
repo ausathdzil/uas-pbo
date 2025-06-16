@@ -78,9 +78,9 @@ uas-pbo/
 ```
 
 ## 🧑‍💻 Developer
-Ausath Abdi Dzil Ikram
-Raditya Reza Faizi
-Rigi Yoga Sumarta
-Annabelle Evrilya Savhisnu
+Ausath Abdi Dzil Ikram, 
+Raditya Reza Faizi, 
+Rigi Yoga Sumarta, 
+Annabelle Evrilya Savhisnu, 
 Ilham Rizky Ramadhan
  
