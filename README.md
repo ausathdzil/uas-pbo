@@ -24,9 +24,6 @@ cd uas-pbo/src
 > Pastikan kamu punya Java JDK minimal versi 17 atau lebih tinggi.
 
 ```bash
-# Bersihkan semua file .class lama
-find . -name "*.class" -delete
-
 # Compile semua file ke folder `out/`
 mkdir -p ../out
 javac -d ../out */*.java Main.java
@@ -81,7 +78,9 @@ uas-pbo/
 ```
 
 ## 🧑‍💻 Developer
-
-Rigi Yoga Sumarta  
-Fakultas Ilmu Komputer  
-Universitas XYZ  
+Ausath Abdi Dzil Ikram
+Raditya Reza Faizi
+Rigi Yoga Sumarta
+Annabelle Evrilya Savhisnu
+Ilham Rizky Ramadhan
+ 
