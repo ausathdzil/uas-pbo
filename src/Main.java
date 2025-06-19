@@ -6,6 +6,7 @@ import entities.RoomSuite;
 import managers.CustomerManagement;
 import managers.ReservationManagement;
 import managers.RoomManagement;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,7 +32,7 @@ public class Main {
             System.out.println("=== Hotel Management System ===");
             System.out.println("1. Customer Management");
             System.out.println("2. Reservation Management");
-            System.out.println("3. Display All Rooms");
+            System.out.println("3. Room Management");
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
             choice = scanner.nextInt();
@@ -45,7 +46,7 @@ public class Main {
                     reservationMenu(scanner, customerManager, reservationManager, roomManager);
                     break;
                 case 3:
-                    roomManager.displayRoomList();
+                    roomMenu(scanner, roomManager);
                     break;
             }
         } while (choice != 0);
@@ -171,15 +172,15 @@ public class Main {
                     LocalDate checkOutDate;
 
                     try {
-                    checkInDate = LocalDate.parse(inStr, formatter);
-                    checkOutDate = LocalDate.parse(outStr, formatter);
-                    if (!checkOutDate.isAfter(checkInDate)) {
-                    System.out.println("Check-out date must be after check-in date.");
-                    break;
-                    }
+                        checkInDate = LocalDate.parse(inStr, formatter);
+                        checkOutDate = LocalDate.parse(outStr, formatter);
+                        if (!checkOutDate.isAfter(checkInDate)) {
+                            System.out.println("Check-out date must be after check-in date.");
+                            break;
+                        }
                     } catch (DateTimeParseException e) {
-                    System.out.println("Incorrect date format. Use dd-MM-yyyy.");
-                    break;
+                        System.out.println("Incorrect date format. Use dd-MM-yyyy.");
+                        break;
                     }
                     reservationManager.makeReservation(customer, selectedRoom, checkInDate, checkOutDate);
                     break;
@@ -241,5 +242,88 @@ public class Main {
                     break;
             }
         } while (resChoice != 0);
+    }
+
+    public static void roomMenu(Scanner scanner, RoomManagement roomManager) {
+        int roomChoice;
+        do {
+            System.out.println("\n--- Room Management ---");
+            System.out.println("1. Add Room");
+            System.out.println("2. Display All Rooms");
+            System.out.println("3. Update Room");
+            System.out.println("4. Remove Room");
+            System.out.println("5. Display Room Count");
+            System.out.println("0. Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            roomChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (roomChoice) {
+                case 1:
+                    System.out.print("Enter room number: ");
+                    int roomNum = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter price per night: ");
+                    int price = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter capacity: ");
+                    int capacity = scanner.nextInt();
+                    System.out.print("Room type (1 for standard, 2 for deluxe, 3 for suite): ");
+                    int type = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (type) {
+                        case 1:
+                            roomManager.addRoom(new RoomStandard(roomNum, price, capacity));
+                            break;
+                        case 2:
+                            roomManager.addRoom(new RoomDeluxe(roomNum, price, capacity));
+                            break;
+                        case 3:
+                            roomManager.addRoom(new RoomSuite(roomNum, price, capacity));
+                            break;
+                    }
+                    break;
+                case 2:
+                    roomManager.displayRoomList();
+                    break;
+                case 3:
+                    System.out.print("Enter room number to update: ");
+                    int updateRoomNum = scanner.nextInt();
+                    Room updateRoom = roomManager.findRoom(updateRoomNum);
+                    scanner.nextLine();
+                    System.out.print("Enter new price per night: ");
+                    int newPrice = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter new capacity: ");
+                    int newCapacity = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.print("Enter availability (1 for available, 0 for unavailable): ");
+                    int availability = scanner.nextInt();
+                    switch (availability) {
+                        case 1:
+                            updateRoom.setAvailable(true);
+                            break;
+                        case 0:
+                            updateRoom.setAvailable(false);
+                    }
+                    roomManager.updateRoom(updateRoom, newPrice, newCapacity);
+                    break;
+                case 4:
+                    System.out.print("Enter room number to remove: ");
+                    int deleteRoomNum = scanner.nextInt();
+                    Room selectedRoom = roomManager.findRoom(deleteRoomNum);
+                    roomManager.removeRoom(selectedRoom);
+                    break;
+                case 5:
+                    System.out.println("Total number of rooms: " + roomManager.getAllRoomsCount());
+                    break;
+                case 0:
+                    System.out.println("Returning to main menu.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+                    break;
+            }
+        } while (roomChoice != 0);
     }
 }

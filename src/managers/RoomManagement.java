@@ -4,7 +4,7 @@ import entities.Room;
 import java.util.ArrayList;
 
 public class RoomManagement {
-    private ArrayList<Room> roomList = new ArrayList<>();
+    private final ArrayList<Room> roomList = new ArrayList<>();
 
     public void addRoom(Room room) {
         roomList.add(room);
@@ -30,19 +30,17 @@ public class RoomManagement {
         return null;
     }
 
-    public void updateRoom(Room room, int newRoomNumber, int newPricePerNight, int newCapacity, boolean newAvailability) {
-        room.setRoomNumber(newRoomNumber);
+    public void updateRoom(Room room, int newPricePerNight, int newCapacity) {
         room.setPricePerNight(newPricePerNight); // diperbaiki dari setPrice → setPricePerNight
         room.setCapacity(newCapacity);
-        room.setAvailable(newAvailability);
     }
 
     public void removeRoom(Room room) {
         roomList.remove(room);
     }
 
-    public ArrayList<Room> getAllRooms() {
-        return roomList;
+    public int getAllRoomsCount() {
+        return roomList.size();
     }
 
     public ArrayList<Room> getAvailableRooms() {
